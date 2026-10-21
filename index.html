@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Muhammad Reezqi — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0908; --panel:#121110; --ink:#F2EDE4; --muted:#8F8478;
+    --gold:#C9AB86; --gold-soft:#DFC6A5; --line:rgba(201,171,134,0.22);
+    box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  :root[data-theme="light"]{
+    --bg:#FAF7F2; --panel:#FFFFFF; --ink:#1B1710; --muted:#7A6E5E;
+    --gold:#8A6A3F; --gold-soft:#6E5330; --line:#E6DCC8;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Manrope',system-ui,sans-serif; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .wrap{max-width:860px; margin:0 auto; padding:0 30px;}
+  h1,h2,h3{font-family:'Josefin Sans',sans-serif; font-weight:600; margin:0;}
+
+  /* ---- deco divider ---- */
+  .deco-rule{display:flex; align-items:center; gap:14px; margin-bottom:26px;}
+  .deco-rule::before,.deco-rule::after{content:''; height:1px; width:34px; background:var(--gold);}
+  .deco-rule span{font-size:12.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold-soft); font-weight:500;}
+
+  /* ---- hero ---- */
+  .hero{position:relative; overflow:hidden; padding:104px 0 90px;}
+  .sunburst{
+    position:absolute; top:-200px; right:-180px; width:480px; height:480px; border-radius:50%;
+    background:repeating-conic-gradient(from 0deg, var(--gold) 0deg 1.4deg, transparent 1.4deg 12deg);
+    opacity:.1; z-index:0;
+  }
+  .arch{
+    position:absolute; left:-70px; bottom:-160px; width:220px; height:300px;
+    border:1px solid var(--gold); border-bottom:none; border-radius:110px 110px 0 0;
+    opacity:.18; z-index:0;
+  }
+  .hero-inner{position:relative; z-index:1;}
+  h1{font-size:clamp(44px,6.6vw,68px); line-height:1.06; letter-spacing:.01em; max-width:12ch; margin-bottom:20px;}
+  .role{font-size:18px; line-height:1.75; max-width:48ch; color:var(--muted); margin-bottom:36px; font-weight:400;}
+  .contact-row{display:flex; flex-wrap:wrap; gap:12px;}
+  .pill{
+    font-size:13.5px; padding:10px 18px; border-radius:2px; text-decoration:none;
+    border:1px solid var(--line); color:var(--muted); letter-spacing:.03em;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .pill:hover{border-color:var(--gold); color:var(--gold-soft);}
+
+  /* ---- section shell ---- */
+  section{padding:70px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+
+  /* ---- summary ---- */
+  .summary p.reveal{font-size:19px; line-height:1.9; max-width:60ch; color:var(--ink); font-weight:400;}
+
+  /* ---- experience ---- */
+  .job{
+    background:var(--panel); border:1px solid var(--line); border-radius:2px;
+    padding:34px 36px; margin-bottom:18px; position:relative;
+  }
+  .job-head{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap; margin-bottom:8px;}
+  .job-head h3{font-size:22px; letter-spacing:.02em;}
+  .badge{
+    font-size:11px; font-weight:500; padding:5px 12px; border-radius:2px; white-space:nowrap;
+    border:1px solid var(--gold); color:var(--gold-soft); letter-spacing:.1em; text-transform:uppercase;
+  }
+  .badge.past{border-color:var(--line); color:var(--muted);}
+  .job .org{font-size:14.5px; color:var(--muted); margin:0 0 20px;}
+  .job ul{margin:0; padding-left:20px; font-size:15.5px; line-height:1.85; color:var(--ink);}
+  .job li{margin-bottom:9px;}
+  .job li:last-child{margin-bottom:0;}
+  .job li::marker{color:var(--gold);}
+
+  /* ---- skills ---- */
+  .skill-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px 40px;}
+  .skill-group h4{font-family:'Josefin Sans',sans-serif; font-weight:600; font-size:14px; letter-spacing:.14em; text-transform:uppercase; margin:0 0 16px; color:var(--gold-soft);}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{font-size:13.5px; padding:7px 14px; border-radius:2px; border:1px solid var(--line); color:var(--muted);}
+  @media (max-width:600px){.skill-grid{grid-template-columns:1fr;}}
+
+  /* ---- education ---- */
+  .row{display:flex; justify-content:space-between; gap:16px; padding:20px 0; border-bottom:1px solid var(--line); flex-wrap:wrap;}
+  .row:last-child{border-bottom:none;}
+  .row .what{font-size:16.5px; font-weight:500;}
+  .row .where{font-size:14px; color:var(--muted); margin-top:4px;}
+  .row .when{font-size:13px; color:var(--gold-soft); font-weight:500; white-space:nowrap; padding-top:3px; letter-spacing:.04em;}
+
+  /* ---- footer ---- */
+  footer{padding:88px 0 96px; text-align:center;}
+  footer h2{font-size:clamp(32px,4.6vw,44px); margin-bottom:18px; letter-spacing:.01em;}
+  footer p{font-size:16.5px; color:var(--muted); max-width:46ch; line-height:1.75; margin:0 auto 34px; font-weight:400;}
+  .foot-links{display:flex; flex-wrap:wrap; gap:14px; justify-content:center;}
+  .btn{font-size:13.5px; padding:14px 28px; border-radius:2px; background:var(--gold); color:var(--bg); text-decoration:none; letter-spacing:.05em; font-weight:600;}
+  .btn.ghost{background:transparent; color:var(--gold-soft); border:1px solid var(--gold);}
+  .fineprint{margin-top:64px; font-size:12px; color:var(--muted); letter-spacing:.03em;}
+
+  /* ---- scroll reveal ---- */
+  .reveal{opacity:0; transform:translateY(34px); filter:blur(4px); transition:opacity 1.1s cubic-bezier(.16,.6,.3,1), transform 1.1s cubic-bezier(.16,.6,.3,1), filter 1.1s ease;}
+  .reveal.visible{opacity:1; transform:none; filter:blur(0);}
+  .job:nth-of-type(2){transition-delay:.12s;}
+  .skill-group:nth-child(2){transition-delay:.08s;}
+  .skill-group:nth-child(3){transition-delay:.16s;}
+  .skill-group:nth-child(4){transition-delay:.24s;}
+  .row:nth-child(2){transition-delay:.1s;}
+  .row:nth-child(3){transition-delay:.2s;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    .sunburst{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="sunburst"></div>
+  <div class="arch"></div>
+  <div class="wrap hero-inner">
+    <div class="deco-rule"><span>Open to work</span></div>
+    <h1>Muhammad Reezqi</h1>
+    <p class="role">Software Engineer building frontend systems for enterprise procurement platforms — 3 years turning complex approval workflows into interfaces people can actually use, currently shipping for Toyota Malaysia's supplier network.</p>
+    <div class="contact-row">
+      <a class="pill" href="mailto:muhammadreezqisasmasari@yahoo.com">Email</a>
+      <a class="pill" href="tel:+60172559913">+60 17-255 9913</a>
+      <a class="pill" href="https://wa.me/60172559913" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="pill" href="https://www.linkedin.com/in/muhammad-reezqi-372478259/" target="_blank" rel="noopener">LinkedIn</a>
+      <span class="pill" style="cursor:default;">Sungai Buloh, Selangor</span>
+    </div>
+  </div>
+</div>
+
+<section class="summary">
+  <div class="wrap">
+    <div class="deco-rule"><span>Summary</span></div>
+    <p class="reveal">I take full frontend ownership of enterprise modules — UI, business logic, validation, data binding — from a blank page to production. At Simbiotik Technologies I've built 5 procurement modules from scratch and now maintain 6–8 across a system supporting Toyota Malaysia and its suppliers, covering everything from sourcing to role-based approval chains. Comfortable moving between Angular, React, and whatever the backend team needs from me.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="deco-rule"><span>Experience</span></div>
+
+    <div class="job reveal">
+      <div class="job-head">
+        <h3>Software Engineer</h3>
+        <span class="badge">Current</span>
+      </div>
+      <p class="org">Simbiotik Technologies Sdn Bhd · Sep 2023 – Present</p>
+      <ul>
+        <li>Own frontend for an enterprise procurement system serving Toyota Malaysia and its suppliers — Purchase Requisition, Sourcing, Supplier Management, User Management, Invoice, and Reporting modules.</li>
+        <li>Built 5 modules from scratch, translating raw business requirements into structured, maintainable interfaces.</li>
+        <li>Implemented approval workflows, role-based access rules, and conditional form logic across form types and user designations.</li>
+        <li>Introduced UI patterns the system didn't have before, including PDF preview pop-ups and approval-level management tables.</li>
+        <li>Worked directly with backend engineers on data structures and REST API integration; shipped through Git-based CI/CD into cloud environments.</li>
+      </ul>
+    </div>
+
+    <div class="job reveal">
+      <div class="job-head">
+        <h3>IT Technician Intern</h3>
+        <span class="badge past">Past</span>
+      </div>
+      <p class="org">Modera Computer Sdn Bhd · Jan 2023 – Jun 2023</p>
+      <ul>
+        <li>Diagnosed and repaired hardware faults across workstations, laptops, printers, and storage devices.</li>
+        <li>Configured and deployed software environments across multiple operating systems.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="deco-rule"><span>Skills</span></div>
+    <div class="skill-grid">
+      <div class="skill-group reveal">
+        <h4>Frontend & Frameworks</h4>
+        <div class="chips">
+          <span class="chip">Angular (v12–v19)</span><span class="chip">TypeScript</span>
+          <span class="chip">React</span><span class="chip">Vue.js</span>
+          <span class="chip">Angular Material</span><span class="chip">Bootstrap</span>
+          <span class="chip">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h4>Systems & Integration</h4>
+        <div class="chips">
+          <span class="chip">REST APIs</span><span class="chip">Data Binding</span>
+          <span class="chip">Form Validation</span><span class="chip">Workflow Design</span>
+          <span class="chip">Role-Based Access</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h4>Tools & Delivery</h4>
+        <div class="chips">
+          <span class="chip">Git</span><span class="chip">Bitbucket</span><span class="chip">GitLab</span>
+          <span class="chip">Jira</span><span class="chip">CI/CD</span><span class="chip">Agile/Scrum</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h4>Also Comfortable With</h4>
+        <div class="chips">
+          <span class="chip">PHP</span><span class="chip">Mobile (Android/iOS)</span>
+          <span class="chip">Cloud Deployment</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="deco-rule"><span>Education & Certificates</span></div>
+    <div class="row reveal">
+      <div><div class="what">Diploma in Computer Engineering</div><div class="where">Politeknik Sultan Idris Shah</div></div>
+      <div class="when">2020 – 2023</div>
+    </div>
+    <div class="row reveal">
+      <div><div class="what">Google Project Management</div><div class="where">Agile/Scrum execution, sprint planning, stakeholder coordination</div></div>
+      <div class="when">2026</div>
+    </div>
+    <div class="row reveal">
+      <div><div class="what">Google Gemini for End-to-End SDLC</div><div class="where">AI-assisted development, testing, deployment, monitoring</div></div>
+      <div class="when">2026</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap reveal">
+    <div class="deco-rule" style="justify-content:center;"><span>Let's talk</span></div>
+    <h2>Building something worth shipping?</h2>
+    <p>I'm currently open to Software Engineer roles where I can own frontend systems end to end. Reach out — I reply fast.</p>
+    <div class="foot-links">
+      <a class="btn" href="mailto:muhammadreezqisasmasari@yahoo.com">Email me</a>
+      <a class="btn ghost" href="https://wa.me/60172559913" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/muhammad-reezqi-372478259/" target="_blank" rel="noopener">View LinkedIn</a>
+    </div>
+    <p class="fineprint">Muhammad Reezqi Bin Sasmasari — Sungai Buloh, Selangor, Malaysia</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.15, rootMargin:'0px 0px -60px 0px'});
+    items.forEach(function(el){ io.observe(el); });
+  } else {
+    items.forEach(function(el){ el.classList.add('visible'); });
+  }
+
+  if(!reduce){
+    var sun = document.querySelector('.sunburst');
+    var ticking = false;
+    window.addEventListener('scroll', function(){
+      if(!ticking){
+        requestAnimationFrame(function(){
+          var deg = window.scrollY * 0.025;
+          if(sun) sun.style.transform = 'rotate(' + deg + 'deg)';
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, {passive:true});
+  }
+})();
+</script>
+
+</body>
+</html>
